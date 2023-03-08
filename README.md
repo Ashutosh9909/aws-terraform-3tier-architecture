@@ -32,3 +32,5 @@ It is a viable choice for software projects to be started quickly.
 * Apache Webserver
 
 * MySQL DB
+
+![3Tier-Architecture](https://user-images.githubusercontent.com/104639044/223647134-7158eecc-53df-4610-8553-be47c25d6af0.png)
