@@ -1,21 +1,12 @@
 # Creating Public Subnet
-resource "aws_subnet" "public1" {
+resource "aws_subnet" "public" {
   vpc_id     = aws_vpc.main.id
-  cidr_block = "10.0.1.0/24"
-  availability_zone = "ap-south-1a"
+  cidr_block = var.subnet_cidrs[count.index]
+  availability_zone = var.availability_zones[count.index]
+  count = 2
 
   tags = {
-    Name = "public-sub-1"
-  }
-}
-
-resource "aws_subnet" "public2" {
-  vpc_id     = aws_vpc.main.id
-  cidr_block = "10.0.2.0/24"
-  availability_zone = "ap-south-1b"
-
-  tags = {
-    Name = "public-sub-2"
+    Name = "public-sub-${count.index + 1}"
   }
 }
 
@@ -23,7 +14,7 @@ resource "aws_subnet" "public2" {
 resource "aws_subnet" "private" {
   vpc_id     = aws_vpc.main.id
   cidr_block = "10.0.3.0/24"
-  availability_zone = "ap-south-1b"
+  availability_zone = "ap-south-1a"
 
   tags = {
     Name = "Private-Sub"
