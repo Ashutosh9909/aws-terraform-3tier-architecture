@@ -11,6 +11,18 @@ resource "aws_instance" "web" {
   tags = {
     Name = "Web-${count.index + 1}"
   }
+
+   provisioner "file" {
+    source = "./aws.pem"
+    destination = "/home/ec2-user/aws.pem"
+  
+    connection {
+      type = "ssh"
+      host = self.public_ip
+      user = "ec2-user"
+      private_key = "${file("./aws.pem")}"
+    }  
+  }
 }
 
 # Creating EC2 DB Server
