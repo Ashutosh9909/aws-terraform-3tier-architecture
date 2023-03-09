@@ -5,7 +5,6 @@ resource "aws_lb" "alb" {
   load_balancer_type = "application"
   security_groups    = [aws_security_group.allow_tls.id]
   subnets            = [aws_subnet.public1.id, aws_subnet.public2.id]
-
   enable_deletion_protection = false
 
   tags = {
