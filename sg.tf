@@ -1,4 +1,4 @@
-# Creating Security Group
+# Creating Web Security Group
 resource "aws_security_group" "allow_tls" {
   name        = "allow_tls"
   description = "Allow TLS inbound traffic"
@@ -32,6 +32,7 @@ resource "aws_security_group" "allow_tls" {
   }
 }
 
+# Creating DB Security Group
 resource "aws_security_group" "allow_tls_db" {
   name        = "allow_tls_db"
   description = "Allow TLS inbound traffic"
