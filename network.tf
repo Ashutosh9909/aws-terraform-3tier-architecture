@@ -16,7 +16,7 @@ resource "aws_eip" "myeip" {
 # Creating NAT-Gateway
 resource "aws_nat_gateway" "natgw" {
   allocation_id = aws_eip.myeip.id
-  subnet_id     = aws_subnet.public[0].id
+  subnet_id     = aws_subnet.public1.id
 
   tags = {
     Name = "NG"
@@ -42,9 +42,13 @@ resource "aws_route_table" "rtb" {
 }
 
 resource "aws_route_table_association" "a" {
-  subnet_id      = aws_subnet.public[count.index].id
+  subnet_id      = aws_subnet.public1.id
   route_table_id = aws_route_table.rtb.id
-  count = 2
+}
+
+resource "aws_route_table_association" "b" {
+  subnet_id      = aws_subnet.public2.id
+  route_table_id = aws_route_table.rtb.id
 }
 
 //Adding NAT Gateway into the default main route table
